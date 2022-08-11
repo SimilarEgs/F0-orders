@@ -1,5 +1,5 @@
 HTTP:
-  Port: "8080"
+  Port: "localhost:8080"
   Timeout: 15
   ReadTimeout: 5
   WriteTimeout: 5
