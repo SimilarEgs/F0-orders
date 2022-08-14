@@ -1,13 +1,16 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"io/ioutil"
 	"log"
 	"time"
 
 	"github.com/SimilarEgs/L0-orders/config"
 	"github.com/SimilarEgs/L0-orders/nats"
+)
+
+const (
+	path = "./publisher/json/"
 )
 
 type Mock struct {
@@ -28,19 +31,43 @@ func main() {
 		log.Printf("[Error] occurred while connecting to the nats: %v", err)
 	}
 
-	for i := 0; ; i++ {
+	data, err := ReadFiles(path)
+	if err != nil {
+		log.Fatalf("[Error] occurred while reading files: %v\n", err)
+	}
 
-		data := Mock{"i - ", i}
-		fmt.Println(data)
-		d, err := json.Marshal(&data)
+	for _, v := range *data {
 
-		err = con.Publish(cfg.Nats.Subject, d)
+		err = con.Publish(cfg.Nats.Subject, v)
+
 		if err != nil {
-			log.Println("[Error] occurred while publishing the message ")
+			log.Printf("[Error] occurred while publishing the message: %v", err)
+		}
+		log.Println("[Info] message was successfully sent")
+		time.Sleep(time.Second * 1)
+	}
+
+}
+
+func ReadFiles(dir string) (*[][]byte, error) {
+
+	res := new([][]byte)
+
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, f := range files {
+		if !f.IsDir() {
+			data, err := ioutil.ReadFile(path + f.Name())
+			if err != nil {
+				return nil, err
+			}
+			*res = append(*res, data)
 		}
 
-		log.Println("[Info] message was successfully sent")
-		time.Sleep(time.Second / 2)
-
 	}
+
+	return res, nil
 }

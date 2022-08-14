@@ -14,9 +14,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
 
-	nats.Subscriber(cfg)
+	sub, err := nats.Subscriber(cfg)
+	if err != nil {
+		log.Println(err)
+	}
+	defer sub.Unsubscribe()
+	defer sub.Close()
 
 	srv := new(server.Server)
 
@@ -25,3 +29,5 @@ func main() {
 	}
 
 }
+
+
