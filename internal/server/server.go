@@ -2,8 +2,9 @@ package server
 
 import (
 	"net/http"
+	"time"
 
-	"github.com/SimilarEgs/F0-orders/config"
+	"github.com/SimilarEgs/L0-orders/config"
 )
 
 const (
@@ -20,8 +21,8 @@ func (s *Server) RunServer(handler http.Handler, cfg *config.Config) error {
 		Addr:           cfg.HTTP.Port,
 		Handler:        handler,
 		MaxHeaderBytes: maxHeaderBytes,
-		WriteTimeout:   cfg.HTTP.WriteTimeout,
-		ReadTimeout:    cfg.HTTP.ReadTimeout,
+		WriteTimeout:   time.Second * cfg.HTTP.WriteTimeout,
+		ReadTimeout:    time.Second * cfg.HTTP.ReadTimeout,
 	}
 	return s.httpServer.ListenAndServe()
 }

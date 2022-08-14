@@ -1,4 +1,4 @@
-module github.com/SimilarEgs/F0-orders
+module github.com/SimilarEgs/L0-orders
 
 go 1.18
 

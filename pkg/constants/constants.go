@@ -1,0 +1,10 @@
+package constants
+
+const (
+	NATS_URL        = "NATS_URL"
+	NATS_CLUSTER_ID = "NATS_CLUSTER_ID"
+	NATS_SUB_ID     = "NATS_SUB_ID"
+	NATS_DURABLE    = "NATS_DURABLE"
+	NATS_PUB_ID     = "NATS_PUB_ID"
+	NATS_SUBJECT    = "NATS_SUBJECT"
+)

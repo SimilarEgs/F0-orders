@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/SimilarEgs/F0-orders/config"
-	"github.com/SimilarEgs/F0-orders/internal/server"
+	"github.com/SimilarEgs/L0-orders/config"
+	"github.com/SimilarEgs/L0-orders/internal/server"
+	"github.com/SimilarEgs/L0-orders/nats"
 )
 
 func main() {
@@ -13,6 +14,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
+
+	nats.Subscriber(cfg)
 
 	srv := new(server.Server)
 

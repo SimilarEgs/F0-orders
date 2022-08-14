@@ -3,13 +3,15 @@ HTTP:
   Timeout: 15
   ReadTimeout: 5
   WriteTimeout: 5
-  MaxConnectionIdle: 5
-  MaxConnectionAge: 5
 
 Nats:
   URL: "localhost:4222"
-  ClusterID: test-cluster
-  ClientID:  test-cluster_a
+  NatsClusterID: "test-cluster"
+  NatsSubID:  "test-sub"
+  NatsPubID:  "test-pub"
+  NatsDurable: "test-durable-sub"
+  NatsSubject:   "orders"
+
 
 PostgreSQL:
   PostgresqlHost: localhost
