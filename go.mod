@@ -5,6 +5,9 @@ go 1.18
 require (
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/gorilla/mux v1.8.0
+	github.com/jmoiron/sqlx v1.3.5
+	github.com/joho/godotenv v1.4.0
+	github.com/lib/pq v1.10.6
 	github.com/nats-io/stan.go v0.10.3
 	github.com/spf13/viper v1.12.0
 )

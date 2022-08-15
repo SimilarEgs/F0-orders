@@ -8,12 +8,14 @@ import (
 
 	"github.com/SimilarEgs/L0-orders/config"
 	"github.com/SimilarEgs/L0-orders/internal/models"
+	"github.com/SimilarEgs/L0-orders/pkg/postgresql"
 	"github.com/nats-io/stan.go"
 )
 
 func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 
 	order := models.Order{}
+	var db postgresql.DB
 
 	con, err := NatsConnect(cfg, cfg.Nats.SubID)
 	if err != nil {
@@ -21,6 +23,9 @@ func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 	}
 
 	log.Println("[Info] connection with nats streaming is established")
+
+	db.Init(cfg)
+	log.Println("[Info] successfully connected to the db")
 
 	sub, err := con.Subscribe(cfg.Nats.Subject, func(msg *stan.Msg) {
 
@@ -44,7 +49,7 @@ func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 		return nil, err
 	}
 
-	log.Printf("[Info] client %s was subscribed to %s\n", cfg.Nats.SubID, cfg.Nats.Subject)
+	log.Printf("[Info] client «%s» was subscribed to «%s» subject\n", cfg.Nats.SubID, cfg.Nats.Subject)
 
 	return sub, err
 }

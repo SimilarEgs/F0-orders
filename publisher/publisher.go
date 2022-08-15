@@ -36,14 +36,15 @@ func main() {
 		log.Fatalf("[Error] occurred while reading files: %v\n", err)
 	}
 
-	for _, v := range *data {
+	for i, v := range *data {
 
 		err = con.Publish(cfg.Nats.Subject, v)
 
 		if err != nil {
 			log.Printf("[Error] occurred while publishing the message: %v", err)
 		}
-		log.Println("[Info] message was successfully sent")
+		log.Printf("[Info] message %d was successfully sent\n", i+1)
+
 		time.Sleep(time.Second * 1)
 	}
 

@@ -19,4 +19,4 @@ PostgreSQL:
   PostgresqlUser: postgres
   PostgresqlPassword: postgres
   PostgresqlDBName: orders_db
-  PostgresqlSslmode: "disable"
+  PostgresqlSslmode: disable

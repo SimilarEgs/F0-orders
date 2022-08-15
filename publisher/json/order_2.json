@@ -16,10 +16,10 @@
     "request_id": "",
     "currency": "USD",
     "provider": "wbpay",
-    "amount": 1817,
+    "amount": "1817",
     "payment_dt": 1637907727,
     "bank": "alpha",
-    "delivery_cost": 1500,
+    "delivery_cost": "1500",
     "goods_total": 317,
     "custom_fee": 0
   },

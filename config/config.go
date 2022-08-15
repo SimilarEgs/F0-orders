@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/SimilarEgs/L0-orders/pkg/constants"
+	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 )
 
@@ -49,6 +50,10 @@ func readConfig() error {
 		return err
 	}
 
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatalf("[Error] .env file didn't load: %s", err.Error())
+	}
+
 	return nil
 }
 
@@ -57,14 +62,9 @@ func ParseConfig() (*Config, error) {
 		return nil, err
 	}
 
-	err := getEnv()
-	if err != nil {
-		return nil, err
-	}
-
 	var c Config
 
-	err = viper.Unmarshal(&c)
+	err := viper.Unmarshal(&c)
 	if err != nil {
 		log.Printf("[Error] unable to decode into struct: %v\n", err)
 		return nil, err
@@ -100,33 +100,70 @@ func ParseConfig() (*Config, error) {
 		c.Nats.Subject = nutsSubject
 	}
 
+	postgresqlHost := os.Getenv(constants.POSTGRES_HOST)
+	if postgresqlHost != "" {
+		c.PostgresSQL.PostgresqlHost = postgresqlHost
+	}
+
+	postgresqlPort := os.Getenv(constants.POSTGRES_PORT)
+	if postgresqlPort != "" {
+		c.PostgresSQL.PostgresqlPort = postgresqlPort
+	}
+
+	postgresqlUser := os.Getenv(constants.POSTGRES_USER)
+	if postgresqlUser != "" {
+		c.PostgresSQL.PostgresqlUser = postgresqlUser
+	}
+
+	postgresqlPassword := os.Getenv(constants.POSTGRES_PASSWORD)
+	if postgresqlPassword != "" {
+		c.PostgresSQL.PostgresqlPassword = postgresqlPassword
+	}
+
+	postgresqlDBName := os.Getenv(constants.POSTGRES_DBNAME)
+	if postgresqlDBName != "" {
+		c.PostgresSQL.PostgresqlDBName = postgresqlDBName
+	}
+
+	postgresqlSslmode := os.Getenv(constants.POSTGRES_SSLMODE)
+	if postgresqlSslmode != "" {
+		c.PostgresSQL.PostgresqlSslmode = postgresqlSslmode
+	}
+
 	return &c, nil
 }
 
-func getEnv() error {
-	err := os.Setenv("NATS_URL", "localhost:4222")
-	if err != nil {
-		return err
-	}
-	err = os.Setenv("NATS_CLUSTER_ID", "test-cluster")
-	if err != nil {
-		return err
-	}
-	err = os.Setenv("NATS_SUB_ID", "test-sub")
-	if err != nil {
-		return err
-	}
-	err = os.Setenv("NATS_PUB_ID", "test-pub")
-	if err != nil {
-		return err
-	}
-	err = os.Setenv("NATS_DURABLE_ID", "test-durable-sub")
-	if err != nil {
-		return err
-	}
-	err = os.Setenv("NATS_SUBJECT", "orders")
-	if err != nil {
-		return err
-	}
-	return nil
-}
+// func getEnv() error {
+// 	err := os.Setenv("NATS_URL", "localhost:4222")
+// 	if err != nil {
+// 		return err
+// 	}
+// 	err = os.Setenv("NATS_CLUSTER_ID", "test-cluster")
+// 	if err != nil {
+// 		return err
+// 	}
+// 	err = os.Setenv("NATS_SUB_ID", "test-sub")
+// 	if err != nil {
+// 		return err
+// 	}
+// 	err = os.Setenv("NATS_PUB_ID", "test-pub")
+// 	if err != nil {
+// 		return err
+// 	}
+// 	err = os.Setenv("NATS_DURABLE_ID", "test-durable-sub")
+// 	if err != nil {
+// 		return err
+// 	}
+// 	err = os.Setenv("NATS_SUBJECT", "orders")
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	// POSTGRES_HOST
+// 	// POSTGRES_PORT
+// 	// POSTGRES_USER
+// 	// POSTGRES_PASSWORD
+// 	// POSTGRES_DBNAME
+// 	// POSTGRES_SSLMODE
+// 	return nil
+// }
