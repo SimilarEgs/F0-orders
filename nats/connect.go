@@ -17,3 +17,4 @@ func NatsConnect(cfg *config.Config, natsClientId string) (stan.Conn, error) {
 		}),
 	)
 }
+	

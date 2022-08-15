@@ -9,6 +9,13 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const (
+	ordersTable   = "orders"
+	deliveryTable = "delivery"
+	paymentTable  = "payment"
+	itemsTable    = "items"
+)
+
 type DB struct {
 	Con *sqlx.DB
 }

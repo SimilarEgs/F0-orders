@@ -5,58 +5,58 @@ import "github.com/go-playground/validator/v10"
 var validate *validator.Validate
 
 type Order struct {
-	Order_uid          string `json:"order_uid"           validate:"required"`
-	Track_number       string `json:"track-number"`
-	Entry              string `json:"entry"`
-	Locate             string `json:"locate"`
-	Internal_signature string `json:"internal_signature"`
-	Customer_id        string `json:"customer_id"`
-	Delivery_service   string `json:"delivery_service"`
-	Shardkey           string `json:"shardkey"`
-	Sm_id              int    `json:"sm_id"               validate:"required"`
-	Date_created       string `json:"date_created"`
-	OOF_shard          string `json:"oof_shard"`
+	OrderUID          string `json:"order_uid"           validate:"required"`
+	TrackNumber       string `json:"track_number"        validate:"required"`
+	Entry             string `json:"entry"               validate:"required"`
+	Locale            string `json:"locale"              validate:"required"`
+	InternalSignature string `json:"internal_signature"  validate:"required"`
+	CustomerID        string `json:"customer_id"         validate:"required"`
+	DeliveryService   string `json:"delivery_service"    validate:"required"`
+	ShardKey          string `json:"shardkey"            validate:"required"`
+	SmID              int    `json:"sm_id"               validate:"required"`
+	DateCreated       string `json:"date_created"        validate:"required"`
+	OOFShard          string `json:"oof_shard"           validate:"required"`
 
-	Delivery Delivery
-	Payment  Payment
-	Items    []Items
+	Delivery Delivery `json:"delivery" validate:"required"`
+	Payment  Payment  `json:"payment"  validate:"required"`
+	Items    []Items  `json:"items"    validate:"required"`
 }
 
 type Delivery struct {
-	Name    string `json:"name"`
-	Phone   string `json:"phone"`
-	Zip     string `json:"zip"`
-	City    string `json:"city"`
-	Address string `json:"address"`
-	Region  string `json:"region"`
-	Email   string `json:"email"`
+	Name    string `json:"name"    validate:"required"`
+	Phone   string `json:"phone"   validate:"required"`
+	Zip     string `json:"zip"     validate:"required"`
+	City    string `json:"city"    validate:"required"`
+	Address string `json:"address" validate:"required"`
+	Region  string `json:"region"  validate:"required"`
+	Email   string `json:"email"   validate:"required"`
 }
 
 type Payment struct {
-	Transaction  string `json:"transaction"`
-	RequestID    string `json:"request_id"`
-	Currency     string `json:"currency"`
-	Provider     string `json:"provider"`
-	Amount       int    `json:"amount"        validate:"numeric"`
-	PaymentDT    int    `json:"payment_dt"    validate:"numeric"`
-	Bank         string `json:"bank"`
-	DeliveryCost int    `json:"delivery_cost" validate:"numeric"`
-	GoodsTotal   int    `json:"goods_total"   validate:"numeric"`
-	CustomFee    int    `json:"custom_fee"    validate:"numeric"`
+	Transaction  string `json:"transaction"   validate:"required"`
+	RequestID    string `json:"request_id"    validate:"required"`
+	Currency     string `json:"currency"      validate:"required"`
+	Provider     string `json:"provider"      validate:"required"`
+	Amount       int    `json:"amount"        validate:"required,numeric"`
+	PaymentDT    int    `json:"payment_dt"    validate:"required,numeric"`
+	Bank         string `json:"bank"          validate:"required"`
+	DeliveryCost int    `json:"delivery_cost" validate:"required,numeric"`
+	GoodsTotal   int    `json:"goods_total"   validate:"required,numeric"`
+	CustomFee    int    `json:"custom_fee"    validate:"required,numeric"`
 }
 
 type Items struct {
-	ChrtID      int    `json:"chrt_id"       validate:"numeric"`
-	TrackNumber string `json:"track_number"`
-	Price       int    `json:"price"         validate:"numeric"`
-	Rid         string `json:"rid"`
-	Name        string `json:"name"`
-	Sale        int    `json:"sale"          validate:"numeric"`
-	Size        string `json:"size"`
-	TotalPrice  int    `json:"total_price"   validate:"numeric"`
-	NmID        int    `json:"nm_id"         validate:"numeric"`
-	Brand       string `json:"brand"`
-	Status      int    `json:"status"        validate:"numeric"`
+	ChrtID      int    `json:"chrt_id"       validate:"required,numeric"`
+	TrackNumber string `json:"track_number"  validate:"required"`
+	Price       int    `json:"price"         validate:"required,numeric"`
+	Rid         string `json:"rid"           validate:"required"`
+	Name        string `json:"name"          validate:"required"`
+	Sale        int    `json:"sale"          validate:"required,numeric"`
+	Size        string `json:"size"          validate:"required"`
+	TotalPrice  int    `json:"total_price"   validate:"required,numeric"`
+	NmID        int    `json:"nm_id"         validate:"required,numeric"`
+	Brand       string `json:"brand"         validate:"required"`
+	Status      int    `json:"status"        validate:"required,numeric"`
 }
 
 func (o Order) ValidateOrder() error {

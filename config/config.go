@@ -132,38 +132,3 @@ func ParseConfig() (*Config, error) {
 
 	return &c, nil
 }
-
-// func getEnv() error {
-// 	err := os.Setenv("NATS_URL", "localhost:4222")
-// 	if err != nil {
-// 		return err
-// 	}
-// 	err = os.Setenv("NATS_CLUSTER_ID", "test-cluster")
-// 	if err != nil {
-// 		return err
-// 	}
-// 	err = os.Setenv("NATS_SUB_ID", "test-sub")
-// 	if err != nil {
-// 		return err
-// 	}
-// 	err = os.Setenv("NATS_PUB_ID", "test-pub")
-// 	if err != nil {
-// 		return err
-// 	}
-// 	err = os.Setenv("NATS_DURABLE_ID", "test-durable-sub")
-// 	if err != nil {
-// 		return err
-// 	}
-// 	err = os.Setenv("NATS_SUBJECT", "orders")
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	// POSTGRES_HOST
-// 	// POSTGRES_PORT
-// 	// POSTGRES_USER
-// 	// POSTGRES_PASSWORD
-// 	// POSTGRES_DBNAME
-// 	// POSTGRES_SSLMODE
-// 	return nil
-// }

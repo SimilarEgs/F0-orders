@@ -39,8 +39,8 @@ func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 			return
 
 		}
-
-		fmt.Println("Recived data:", string(msg.Data))
+		order.ValidateOrder()
+		db.Insert(&order)
 
 	}, stan.SetManualAckMode(), stan.AckWait(time.Duration(30)*time.Second), stan.DeliverAllAvailable(), stan.MaxInflight(10), stan.DurableName(cfg.Nats.NatsDurable))
 
