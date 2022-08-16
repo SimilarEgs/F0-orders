@@ -1,5 +1,7 @@
 package constants
 
+import "time"
+
 const (
 	NATS_URL        = "NATS_URL"
 	NATS_CLUSTER_ID = "NATS_CLUSTER_ID"
@@ -17,4 +19,7 @@ const (
 	POSTGRES_SOURCE   = "POSTGRES_SOURCE"
 
 	MIGRATION_URL = "MIGRATION_URL"
+
+	CacheDuration = 3 * time.Hour
+	CacheCleanUp  = 6 * time.Hour
 )

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/SimilarEgs/L0-orders/pkg/cache"
 	"github.com/gorilla/mux"
 )
 
@@ -18,5 +19,10 @@ func ServeRoutes() *mux.Router {
 
 func OrderByIdHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	fmt.Fprintf(w, "id of the order - %s", id)
+	order, _ := cache.AppCache.Get(id)
+
+	for _, item := range order.Items {
+		fmt.Fprintf(w, "items: %v", item)
+	}
+
 }

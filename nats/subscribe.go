@@ -9,16 +9,11 @@ import (
 	"github.com/SimilarEgs/L0-orders/config"
 	"github.com/SimilarEgs/L0-orders/internal/models"
 	"github.com/SimilarEgs/L0-orders/pkg/cache"
+	"github.com/SimilarEgs/L0-orders/pkg/constants"
 	"github.com/SimilarEgs/L0-orders/pkg/postgresql"
+
 	"github.com/nats-io/stan.go"
 )
-
-const (
-	cacheDuration = 3 * time.Hour
-	cacheCleanUp  = 6 * time.Hour
-)
-
-var AppCache = cache.New(cacheDuration, cacheCleanUp)
 
 func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 
@@ -55,7 +50,7 @@ func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 		}
 
 		db.Insert(&order)
-		AppCache.Set(order.OrderUID, order, cacheDuration)
+		cache.AppCache.Set(order.OrderUID, order, constants.CacheDuration)
 
 		log.Printf("[Info] order - «%s» was successfully inserted into the DB\n", order.OrderUID)
 

@@ -8,6 +8,13 @@ import (
 	"github.com/SimilarEgs/L0-orders/internal/models"
 )
 
+const (
+	cacheDuration = 3 * time.Hour
+	cacheCleanUp  = 6 * time.Hour
+)
+
+var AppCache *Cache
+
 type Cache struct {
 	sync.RWMutex
 	items             map[string]Item
@@ -19,6 +26,10 @@ type Item struct {
 	Order      models.Order
 	Expiration int64
 	Created    time.Time
+}
+
+func Init() {
+	AppCache = New(cacheDuration, cacheCleanUp)
 }
 
 func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
