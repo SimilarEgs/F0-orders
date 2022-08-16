@@ -11,9 +11,10 @@ import (
 )
 
 type Config struct {
-	HTTP        HTTP
-	Nats        Nats
-	PostgresSQL PostgresSQL
+	HTTP         HTTP
+	Nats         Nats
+	PostgresSQL  PostgresSQL
+	MigrationURL string
 }
 
 type HTTP struct {
@@ -39,6 +40,7 @@ type PostgresSQL struct {
 	PostgresqlPassword string
 	PostgresqlDBName   string
 	PostgresqlSslmode  string
+	PostgreSource      string
 }
 
 func readConfig() error {
@@ -128,6 +130,16 @@ func ParseConfig() (*Config, error) {
 	postgresqlSslmode := os.Getenv(constants.POSTGRES_SSLMODE)
 	if postgresqlSslmode != "" {
 		c.PostgresSQL.PostgresqlSslmode = postgresqlSslmode
+	}
+
+	migrationURL := os.Getenv(constants.MIGRATION_URL)
+	if migrationURL != "" {
+		c.MigrationURL = migrationURL
+	}
+
+	postgreSource := os.Getenv(constants.POSTGRES_SOURCE)
+	if postgreSource != "" {
+		c.PostgresSQL.PostgreSource = postgreSource
 	}
 
 	return &c, nil

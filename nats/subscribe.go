@@ -34,13 +34,19 @@ func Subscriber(cfg *config.Config) (stan.Subscription, error) {
 		}
 
 		if err := json.Unmarshal(msg.Data, &order); err != nil {
-			msg := fmt.Sprintf("[Error] occured while unmurshaling msg dta: %v\n", err.Error())
-			log.Println(msg)
+			msg := fmt.Sprintf("[Error] order ID - «%s»\n", order.OrderUID)
+			log.Print(msg)
+			log.Printf("[Error] occured while unmurshaling payload data: %v\n\n", err.Error())
+			return
+		}
+
+		if err := order.ValidateOrder(); err != nil {
+			log.Printf("[Error] occurred while validating message data: %v\n", err)
 			return
 
 		}
-		order.ValidateOrder()
 		db.Insert(&order)
+		log.Printf("[Info] order - «%s» was successfully inserted into the DB\n", order.OrderUID)
 
 	}, stan.SetManualAckMode(), stan.AckWait(time.Duration(30)*time.Second), stan.DeliverAllAvailable(), stan.MaxInflight(10), stan.DurableName(cfg.Nats.NatsDurable))
 

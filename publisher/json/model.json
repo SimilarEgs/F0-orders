@@ -1,12 +1,12 @@
 {
-  "order_uid": "1231312qweqwe-123",
-  "track_number": "qweqwe123",
-  "entry": "qqwe",
+  "order_uid": "b563feb7b2b84b6test",
+  "track_number": "WBILMTESTTRACK",
+  "entry": "WBIL",
   "delivery": {
-    "name": "Test Name2",
-    "phone": "+99999999",
-    "zip": "123123123",
-    "city": "Moscow",
+    "name": "Test Testov",
+    "phone": "+9720000000",
+    "zip": "2639809",
+    "city": "Kiryat Mozkin",
     "address": "Ploshad Mira 15",
     "region": "Kraiot",
     "email": "test@gmail.com"
@@ -16,10 +16,10 @@
     "request_id": "",
     "currency": "USD",
     "provider": "wbpay",
-    "amount": "1817",
+    "amount": 1817,
     "payment_dt": 1637907727,
     "bank": "alpha",
-    "delivery_cost": "1500",
+    "delivery_cost": 1500,
     "goods_total": 317,
     "custom_fee": 0
   },
