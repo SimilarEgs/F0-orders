@@ -1,28 +1,31 @@
 package server
 
 import (
-	"fmt"
+	"log"
 	"net/http"
+	"text/template"
 
 	"github.com/SimilarEgs/L0-orders/pkg/cache"
-	"github.com/gorilla/mux"
 )
 
-func ServeRoutes() *mux.Router {
+var tmpl *template.Template
 
-	r := mux.NewRouter()
-
-	r.HandleFunc("/orders/{id}", OrderByIdHandler)
-
-	return r
+func init() {
+	tmpl = template.Must(template.ParseGlob("./static/templates/*.html"))
 }
 
 func OrderByIdHandler(w http.ResponseWriter, r *http.Request) {
-	id := mux.Vars(r)["id"]
-	order, _ := cache.AppCache.Get(id)
 
-	for _, item := range order.Items {
-		fmt.Fprintf(w, "items: %v", item)
+	orderId := r.URL.Query().Get("id")
+	order, ok := cache.AppCache.Get(orderId)
+
+	if !ok {
+		http.NotFound(w, r)
+		return
 	}
 
+	err := tmpl.ExecuteTemplate(w, "orders.html", order)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

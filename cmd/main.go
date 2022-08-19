@@ -13,8 +13,6 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
-const ()
-
 func main() {
 
 	cfg, err := config.ParseConfig()
@@ -42,7 +40,7 @@ func main() {
 
 	srv := new(server.Server)
 
-	if err := srv.RunServer(server.ServeRoutes(), cfg); err != nil {
+	if err := srv.RunServer(cfg); err != nil {
 		log.Fatalf("[Error] failed to start server: %s", err.Error())
 	}
 

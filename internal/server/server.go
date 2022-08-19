@@ -15,11 +15,15 @@ type Server struct {
 	httpServer *http.Server
 }
 
-func (s *Server) RunServer(handler http.Handler, cfg *config.Config) error {
+func (s *Server) RunServer(cfg *config.Config) error {
+
+	// serving static files
+	fs := http.FileServer(http.Dir("./static/assets"))
+	http.Handle("/assets/", http.StripPrefix("/assets", fs))
+	http.HandleFunc("/orders", OrderByIdHandler)
 
 	s.httpServer = &http.Server{
 		Addr:           cfg.HTTP.Port,
-		Handler:        handler,
 		MaxHeaderBytes: maxHeaderBytes,
 		WriteTimeout:   time.Second * cfg.HTTP.WriteTimeout,
 		ReadTimeout:    time.Second * cfg.HTTP.ReadTimeout,

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="icon" type="image/png" href="wb.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <title>Order Detalis</title>
+</head>
+
+
+
+<body>
+
+    <h1>Ягодки Доставка</h1>
+
+    <table>
+        <caption>Order</caption>
+        <tr>
+            <th>Order UID</th>
+            <th>Track Number</th>
+            <th>Entry</th>
+            <th>Locale</th>
+            <th>Customer ID</th>
+            <th>Delivery Service</th>
+            <th>Shard Key</th>
+            <th>SmID</th>
+            <th style="width:15%">Date Created</th>
+            <th>Oof Shard</th>
+            <th>Internal Signature</th>
+        </tr>
+
+        <td>{{.OrderUID}}</td>
+        <td>{{.TrackNumber}}</td>
+        <td>{{.Entry}}</td>
+        <td>{{.Locale}}</td>
+        <td>{{.CustomerID}}</td>
+        <td>{{.DeliveryService}}</td>
+        <td>{{.ShardKey}}</td>
+        <td>{{.SmID}}</td>
+        <td>{{.DateCreated}}</td>
+        <td>{{.OOFShard}}</td>
+        <td></td>
+
+    </table>
+
+    <br>
+    <br>
+
+    <table>
+        <caption>Delivery</caption>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Zip</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Region</th>
+            <th>Email</th>
+        </tr>
+
+        <td>{{.Delivery.Name}}</td>
+        <td>{{.Delivery.Phone}}</td>
+        <td>{{.Delivery.Zip}}</td>
+        <td>{{.Delivery.City}}</td>
+        <td>{{.Delivery.Address}}</td>
+        <td>{{.Delivery.Region}}</td>
+        <td>{{.Delivery.Email}}</td>
+
+    </table>
+
+    <br>
+    <br>
+
+    <table>
+        <caption>Payment</caption>
+        <tr>
+            <th>Transaction</th>
+            <th>Request ID</th>
+            <th>Currency</th>
+            <th>Provider</th>
+            <th>Amount</th>
+            <th>Payment DT</th>
+            <th>Bank</th>
+            <th>Delivery Cost</th>
+            <th>Goods Total</th>
+            <th>Custom Fee</th>
+
+        </tr>
+
+        <td>{{.Payment.Transaction}}</td>
+        <td>{{.Payment.RequestID}}</td>
+        <td>{{.Payment.Currency}}</td>
+        <td>{{.Payment.Provider}}</td>
+        <td>{{.Payment.Amount}}</td>
+        <td>{{.Payment.PaymentDT}}</td>
+        <td>{{.Payment.Bank}}</td>
+        <td>{{.Payment.DeliveryCost}}</td>
+        <td>{{.Payment.GoodsTotal}}</td>
+        <td>{{.Payment.CustomFee}}</td>
+
+    </table>
+
+    <br>
+    <br>
+    <table>
+        <caption>Item</caption>
+        <tr>
+            <th>Chrt ID</th>
+            <th>Track Number</th>
+            <th>Price</th>
+            <th>Rid</th>
+            <th>Name</th>
+            <th>Sale</th>
+            <th>Size</th>
+            <th>Total Price</th>
+            <th>Nm ID</th>
+            <th>Brand</th>
+            <th>Status</th>
+
+        </tr>
+        {{range .Items}}
+        <td>{{.ChrtID}}</td>
+        <td>{{.TrackNumber}}</td>
+        <td>{{.Price}}</td>
+        <td>{{.Rid}}</td>
+        <td>{{.Name}}</td>
+        <td>{{.Sale}}</td>
+        <td>{{.Size}}</td>
+        <td>{{.TotalPrice}}</td>
+        <td>{{.NmID}}</td>
+        <td>{{.Brand}}</td>
+        <td>{{.Status}}</td>
+
+        <tr>
+        </tr>
+        {{end}}
+    </table>
+
+</body>
+
+</html>

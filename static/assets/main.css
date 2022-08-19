@@ -1,0 +1,73 @@
+
+body{
+    background-image: url('./background.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin: 0; padding: 0;
+    align-items: center;
+    
+    
+}
+
+h1{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+}
+
+
+
+table{
+    background-color: rgb(243, 206, 248);
+    border: 1.5px solid;
+    border-radius: 7px;
+    margin-left: auto; 
+    margin-right: auto;
+    
+}
+
+
+th {
+    border: 1.5px solid rgb(0, 0, 0);
+    background-color: rgba(230, 92, 230, 0.301);
+    border-radius: 5px;
+
+    color:black;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 30px;
+    padding-right: 40px;
+
+}
+td {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 17px;
+    text-align: center;
+    
+    background-color: rgba(249, 244, 244, 0.806);
+    border: 1px solid;
+    border-radius: 3px;
+    
+    width: 500px;
+
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+
+caption{
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
+
