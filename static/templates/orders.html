@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="icon" type="image/png" href="wb.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&display=swap" rel="stylesheet">
     <title>Order Detalis</title>
 </head>
@@ -139,6 +139,18 @@
         </tr>
         {{end}}
     </table>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <form action="/orders" class="form" method="get">
+            <input type="text" class="inp" placeholder="Your Order UID" name="id" />
+            <input type="submit" class="sub sub--primary sub--inside" value="find"></input>
+        </form>
+    </div>
+
+
 
 </body>
 

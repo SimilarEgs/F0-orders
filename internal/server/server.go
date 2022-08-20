@@ -17,10 +17,15 @@ type Server struct {
 
 func (s *Server) RunServer(cfg *config.Config) error {
 
-	// serving static files
+	// serving html
 	fs := http.FileServer(http.Dir("./static/assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets", fs))
 	http.HandleFunc("/orders", OrderByIdHandler)
+
+	// serving favicon
+	is := http.FileServer(http.Dir("./static/templates"))
+	http.Handle("/templates/", http.StripPrefix("/templates", is))
+	http.HandleFunc("/favicon.ico", faviconHandler)
 
 	s.httpServer = &http.Server{
 		Addr:           cfg.HTTP.Port,
