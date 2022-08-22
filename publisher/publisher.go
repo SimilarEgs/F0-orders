@@ -13,10 +13,6 @@ const (
 	path = "./publisher/json/"
 )
 
-type Mock struct {
-	Field  string
-	Number int
-}
 
 func main() {
 	cfg, err := config.ParseConfig()
