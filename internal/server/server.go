@@ -27,6 +27,8 @@ func (s *Server) RunServer(cfg *config.Config) error {
 	http.Handle("/templates/", http.StripPrefix("/templates", is))
 	http.HandleFunc("/favicon.ico", faviconHandler)
 
+	
+
 	s.httpServer = &http.Server{
 		Addr:           cfg.HTTP.Port,
 		MaxHeaderBytes: maxHeaderBytes,

@@ -21,7 +21,7 @@ migrate-down:
 # ====================================================================================================================================
 # Nats
 nats:
-	docker run -p 4222:4222 nats-streaming
+	docker run -p 4222:4222 -d nats-streaming
 
 
 .PHONY: nats migrate-down migrate-up migrate-force

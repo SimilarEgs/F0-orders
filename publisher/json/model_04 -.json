@@ -1,13 +1,13 @@
 {
-  "order_uid": "123qqq",
+  "order_uid": "",
   "track_number": "WBILMTESTTRACK",
   "entry": "WBIL",
   "delivery": {
-    "name": "Test Testov",
-    "phone": "+9720000000",
-    "zip": "2639809",
-    "city": "Kiryat Mozkin",
-    "address": "Ploshad Mira 15",
+    "name": "Vladimir Vladimirovich",
+    "phone": "+777777777",
+    "zip": "12345678",
+    "city": "Moscow",
+    "address": "Ploshad Mira 30",
     "region": "Kraiot",
     "email": "test@gmail.com"
   },
@@ -16,12 +16,12 @@
     "request_id": "",
     "currency": "USD",
     "provider": "wbpay",
-    "amount": 111,
+    "amount": 1817,
     "payment_dt": 1637907727,
     "bank": "alpha",
     "delivery_cost": 1500,
     "goods_total": 317,
-    "custom_fee": 12
+    "custom_fee": 0
   },
   "items": [
     {
@@ -37,9 +37,10 @@
       "brand": "Vivienne Sabo",
       "status": 202
     }
+    
   ],
-  "locale": "en",
-  "internal_signature": "",
+  "locale": "us",
+  "internal_signature": "123",
   "customer_id": "test",
   "delivery_service": "meest",
   "shardkey": "9",
